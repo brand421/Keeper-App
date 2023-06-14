@@ -2,16 +2,23 @@ import React from "react";
 import Heading from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
-import notes from "../notes";
+import CreateArea from "./CreateArea";
 
 function App() {
-    return (
-        <div>
-            <Heading />
-            <Note key={1} title='Note title' content='Note Content' />
-            <Footer />
-        </div>
-    )
+  const [note, setNote] = useState();
+
+  return (
+    <div>
+      <Heading />
+      <CreateArea />
+      <div>
+        {note.map((noteItem, index) => (
+          <Note key={index} id={index} title={title} content={content} />
+        ))}
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
