@@ -1,18 +1,33 @@
 import React, { useState } from "react";
 
 function CreateArea(props) {
-  const [noteInput, setNoteInput] = useState("");
+  const [note, setNote] = useState([
+    {
+      title: "",
+      content: "",
+    },
+  ]);
 
-  const [titleInput, setTitleInput] = useState("");
+  function handleChange(e) {
+    const { name, value } = e.target;
 
-  function handleTitleChange(e) {
-    const newValue = e.target.value;
-    setTitleInput(newValue);
+    setNote((prevNote) => {
+      return {
+        ...prevNote,
+        [name]: value,
+      };
+    });
   }
 
-  function handleNoteChange(e) {
-    const newValue = e.target.value;
-    setNoteInput(newValue);
+  function submitNote(e) {
+    props.onAdd(note);
+    e.preventDefault();
+    setNote([
+      {
+        title: "",
+        content: "",
+      },
+    ]);
   }
 
   return (
@@ -21,26 +36,17 @@ function CreateArea(props) {
         <input
           name="title"
           placeholder="Title"
-          onChange={handleTitleChange}
-          value={titleInput}
+          onChange={handleChange}
+          value={note.title}
         />
         <textarea
           name="content"
           placeholder="Take a note..."
           rows={3}
-          onChange={handleNoteChange}
-          value={noteInput}
+          onChange={handleChange}
+          value={note.content}
         />
-        <button
-          onClick={() => {
-            props.onClickTitle(titleInput);
-            props.onClickNote(noteInput);
-            setTitleInput("");
-            setNoteInput("");
-          }}
-        >
-          Add
-        </button>
+        <button onClick={submitNote}>Add</button>
       </form>
     </div>
   );
