@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function Note(props) {
   return (
@@ -10,7 +11,7 @@ function Note(props) {
           props.onClicked(props.id);
         }}
       >
-        DELETE
+      <DeleteOutlineIcon />
       </button>
     </div>
   );
