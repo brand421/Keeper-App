@@ -28,7 +28,7 @@ function CreateArea(props) {
           name="content"
           placeholder="Take a note..."
           rows={3}
-          onChange={handleNote}
+          onChange={handleNoteChange}
           value={noteInput}
         />
         <button
