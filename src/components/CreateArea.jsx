@@ -15,7 +15,6 @@ function CreateArea(props) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    props.isEmpty = true;
     setNote((prevNote) => {
       return {
         ...prevNote,
